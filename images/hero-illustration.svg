@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
+  <title>Pash Care illustration</title>
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1">
+      <stop offset="0" stop-color="#a5d6a7"/>
+      <stop offset="1" stop-color="#66bb6a"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" x2="1">
+      <stop offset="0" stop-color="#e8f5e9"/>
+      <stop offset="1" stop-color="#f1f8f3"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#g2)" rx="20"/>
+
+  <!-- stylized clinic building -->
+  <g transform="translate(120,120)">
+    <rect x="0" y="160" width="460" height="300" rx="18" fill="#fff" stroke="#d7e9d8" stroke-width="2"/>
+    <rect x="26" y="200" width="80" height="80" rx="6" fill="url(#g1)" opacity="0.95"/>
+    <rect x="126" y="200" width="80" height="80" rx="6" fill="#f3f9f4"/>
+    <rect x="226" y="200" width="80" height="80" rx="6" fill="#f3f9f4"/>
+    <rect x="326" y="200" width="80" height="80" rx="6" fill="#f3f9f4"/>
+    <rect x="140" y="300" width="180" height="140" rx="8" fill="#fff" stroke="#e6f3e9"/>
+    <text x="40" y="120" font-family="sans-serif" font-size="48" fill="#2d3748" font-weight="700">Pash Care</text>
+    <circle cx="380" cy="80" r="30" fill="#66bb6a" opacity="0.95"/>
+    <path d="M362 68 l36 0" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+    <path d="M380 52 v36" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <!-- patient + doctor simplified figures -->
+  <g transform="translate(640,220) scale(1)">
+    <!-- patient -->
+    <circle cx="80" cy="60" r="36" fill="#ffe0b2"/>
+    <rect x="40" y="120" width="80" height="120" rx="14" fill="#fff" stroke="#f0f0f0"/>
+    <path d="M40 140 q40 24 80 0" stroke="#e0e0e0" stroke-width="6" fill="none"/>
+
+    <!-- doctor -->
+    <circle cx="220" cy="50" r="36" fill="#c8e6c9"/>
+    <rect x="180" y="110" width="100" height="150" rx="14" fill="#fff" stroke="#f0f0f0"/>
+    <rect x="195" y="140" width="12" height="40" rx="4" fill="#66bb6a"/>
+    <rect x="243" y="140" width="12" height="40" rx="4" fill="#66bb6a"/>
+
+    <!-- connecting line / stethoscope hint -->
+    <path d="M120 160 C160 150 180 150 200 160" stroke="#9ccc65" stroke-width="6" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- decorative dots -->
+  <g fill="#c8e6c9" opacity="0.6">
+    <circle cx="980" cy="100" r="6"/>
+    <circle cx="1020" cy="140" r="4"/>
+    <circle cx="920" cy="60" r="5"/>
+  </g>
+</svg>
