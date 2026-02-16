@@ -30,7 +30,7 @@ User-agent: Slurp
 Allow: /
 
 # Sitemap location
-Sitemap: https://pashmedinnov.com/sitemap.xml
+Sitemap: https://pashcare.pashmedinnov.com/sitemap.xml
 
 # Crawl delay for respectful crawling
 Crawl-delay: 1

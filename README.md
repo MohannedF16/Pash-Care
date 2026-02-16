@@ -204,7 +204,7 @@ define('COMPANY_WEBSITE', 'https://yourwebsite.com');
 - **Robots.txt**: Search engine instructions
 
 ### SEO Checklist (quick)
-- Ensure `https://pashmedinnov.com/sitemap.xml` is reachable
+- Ensure `https://pashcare.pashmedinnov.com/sitemap.xml` is reachable
 - Ensure `robots.txt` is reachable and references the sitemap
 - Validate Structured Data in Google Rich Results Test
 - Use a share image that is publicly accessible (`og:image`, `twitter:image`)
@@ -290,7 +290,7 @@ ini_set('display_errors', 1);
 
 ### Technical Support
 - **Email**: pashmedicalsolutions@gmail.com
-- **Website**: https://pashmedinnov.com
+- **Website**: https://pashcare.pashmedinnov.com
 - **Documentation**: This README file
 
 ### Maintenance

@@ -206,6 +206,7 @@ window.addEventListener('DOMContentLoaded', function() {
       const phone = form.querySelector('input[name="phone"]');
       const date = form.querySelector('input[name="date"]');
       const interest = form.querySelector('select[name="interest"]');
+      const termsAccepted = form.querySelector('input[name="termsAccepted"]');
 
       if (!fullName || !fullName.value.trim()) return invalid(isAr ? 'الرجاء إدخال الاسم الكامل.' : 'Please enter your full name.', fullName);
       if (!email || !emailRe.test(email.value.trim())) return invalid(isAr ? 'الرجاء إدخال بريد إلكتروني صالح.' : 'Please enter a valid email address.', email);
@@ -216,6 +217,7 @@ window.addEventListener('DOMContentLoaded', function() {
       const today = new Date(); today.setHours(0,0,0,0);
       if (selected < today) return invalid(isAr ? 'لا يمكن اختيار تاريخ في الماضي.' : 'Reservation date cannot be in the past.', date);
       if (!interest || !interest.value) return invalid(isAr ? 'الرجاء اختيار نوع الخدمة.' : 'Please select a service.', interest);
+      if (!termsAccepted || !termsAccepted.checked) return invalid(isAr ? 'يجب الموافقة على الشروط وسياسة الخدمة قبل إرسال الطلب.' : 'You must agree to the Terms & Service Policy before submitting.', termsAccepted);
 
     } else {
       // interest form
@@ -296,6 +298,16 @@ window.addEventListener('DOMContentLoaded', function() {
           form.dataset.submitting = '0';
           setFormLoading(false);
         });
+    });
+  });
+
+
+  // Prevent '#' links from jumping while still allowing Bootstrap modal trigger
+  ['terms-link-ar', 'terms-link-en'].forEach(id => {
+    const link = document.getElementById(id);
+    if (!link) return;
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
     });
   });
 

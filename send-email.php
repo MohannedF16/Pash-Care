@@ -21,11 +21,18 @@ if ($formType === 'reservation') {
     $interest = isset($_POST['interest']) ? trim($_POST['interest']) : '';
     $doctor = isset($_POST['doctor']) ? trim($_POST['doctor']) : '';
     $notes = isset($_POST['notes']) ? trim($_POST['notes']) : '';
+    $termsAccepted = isset($_POST['termsAccepted']) ? trim($_POST['termsAccepted']) : '';
 
     // Validate required fields for reservation
     if (empty($fullName) || empty($email) || empty($phone) || empty($date) || empty($interest)) {
         http_response_code(400);
         echo json_encode(['success' => false, 'message' => 'All reservation fields are required.']);
+        exit;
+    }
+
+    if ($termsAccepted !== '1') {
+        http_response_code(400);
+        echo json_encode(['success' => false, 'message' => 'You must accept the Terms & Service Policy before submitting.']);
         exit;
     }
 
@@ -252,7 +259,7 @@ function prepare_user_email($fullName) {
         
         <div class='footer'>
             <p>&copy; 2025 Pash Medical Solutions. All rights reserved.</p>
-            <p><a href='https://pashmedinnov.com'>Visit our website</a></p>
+            <p><a href='https://pashcare.pashmedinnov.com'>Visit our website</a></p>
         </div>
     </div>
 </body>

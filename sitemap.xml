@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://pashmedinnov.com/</loc>
+    <loc>https://pashcare.pashmedinnov.com/</loc>
     <lastmod>2025-02-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://pashmedinnov.com/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://pashmedinnov.com/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://pashcare.pashmedinnov.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pashcare.pashmedinnov.com/" />
   </url>
   <url>
-    <loc>https://pashmedinnov.com/#about</loc>
+    <loc>https://pashcare.pashmedinnov.com/#about</loc>
     <lastmod>2025-02-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://pashmedinnov.com/#about" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://pashmedinnov.com/#about" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://pashcare.pashmedinnov.com/#about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pashcare.pashmedinnov.com/#about" />
   </url>
   <url>
-    <loc>https://pashmedinnov.com/#services</loc>
+    <loc>https://pashcare.pashmedinnov.com/#services</loc>
     <lastmod>2025-02-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://pashmedinnov.com/#services" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://pashmedinnov.com/#services" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://pashcare.pashmedinnov.com/#services" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pashcare.pashmedinnov.com/#services" />
   </url>
   <url>
-    <loc>https://pashmedinnov.com/#doctors</loc>
+    <loc>https://pashcare.pashmedinnov.com/#doctors</loc>
     <lastmod>2025-02-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://pashmedinnov.com/#doctors" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://pashmedinnov.com/#doctors" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://pashcare.pashmedinnov.com/#doctors" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pashcare.pashmedinnov.com/#doctors" />
   </url>
   <url>
-    <loc>https://pashmedinnov.com/#specialist</loc>
+    <loc>https://pashcare.pashmedinnov.com/#specialist</loc>
     <lastmod>2025-02-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://pashmedinnov.com/#specialist" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://pashmedinnov.com/#specialist" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://pashcare.pashmedinnov.com/#specialist" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pashcare.pashmedinnov.com/#specialist" />
   </url>
   <url>
-    <loc>https://pashmedinnov.com/#booking</loc>
+    <loc>https://pashcare.pashmedinnov.com/#booking</loc>
     <lastmod>2025-02-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://pashmedinnov.com/#booking" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://pashmedinnov.com/#booking" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://pashcare.pashmedinnov.com/#booking" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pashcare.pashmedinnov.com/#booking" />
   </url>
 </urlset>

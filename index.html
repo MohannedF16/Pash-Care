@@ -17,10 +17,10 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://pashmedinnov.com" />
+    <meta property="og:url" content="https://pashcare.pashmedinnov.com" />
     <meta property="og:title" content="Pash Care - منصة الرعاية الصحية المتكاملة في السودان" />
     <meta property="og:description" content="احجز استشارات مع أفضل الأطباء في السودان. خدمات طبية معتمدة، تمريض منزلي، واستشارات متخصصة." />
-    <meta property="og:image" content="https://pashmedinnov.com/images/hero-illustration.svg" />
+    <meta property="og:image" content="https://pashcare.pashmedinnov.com/images/hero-illustration.svg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Pash Care - Healthcare Platform Sudan" />
@@ -30,15 +30,15 @@
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://pashmedinnov.com" />
+    <meta property="twitter:url" content="https://pashcare.pashmedinnov.com" />
     <meta property="twitter:title" content="Pash Care - منصة الرعاية الصحية المتكاملة في السودان" />
     <meta property="twitter:description" content="احجز استشارات مع أفضل الأطباء في السودان. خدمات طبية معتمدة وموثوقة." />
-    <meta property="twitter:image" content="https://pashmedinnov.com/images/hero-illustration.svg" />
+    <meta property="twitter:image" content="https://pashcare.pashmedinnov.com/images/hero-illustration.svg" />
     <meta property="twitter:creator" content="@pashcare" />
     
     <!-- SEO Meta Tags -->
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-    <link rel="canonical" href="https://pashmedinnov.com" />
+    <link rel="canonical" href="https://pashcare.pashmedinnov.com" />
     <meta name="theme-color" content="#1b5e20" />
     <meta name="msapplication-TileColor" content="#1b5e20" />
     
@@ -56,8 +56,8 @@
       "@context": "https://schema.org",
       "@type": "MedicalOrganization",
       "name": "Pash Care - Pash Medical Solutions",
-      "url": "https://pashmedinnov.com",
-      "logo": "https://pashmedinnov.com/images/logo.jpg",
+      "url": "https://pashcare.pashmedinnov.com",
+      "logo": "https://pashcare.pashmedinnov.com/images/logo.jpg",
       "description": "منصة طبية رائدة تربطك بأفضل الأطباء والخدمات الصحية في السودان",
       "address": {
         "@type": "PostalAddress",
@@ -112,11 +112,11 @@
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "Pash Care",
-      "url": "https://pashmedinnov.com",
+      "url": "https://pashcare.pashmedinnov.com",
       "description": "منصة الرعاية الصحية المتكاملة في السودان",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://pashmedinnov.com/?q={search_term_string}",
+        "target": "https://pashcare.pashmedinnov.com/?q={search_term_string}",
         "query-input": "required name=search_term_string"
       },
       "inLanguage": ["ar", "en"]
@@ -130,7 +130,7 @@
       "@type": "LocalBusiness",
       "name": "Pash Care",
       "description": "Medical services and doctor consultations in Sudan",
-      "url": "https://pashmedinnov.com",
+      "url": "https://pashcare.pashmedinnov.com",
       "telephone": "+249XXXXXXXXX",
       "address": {
         "@type": "PostalAddress",
@@ -1181,6 +1181,17 @@
                       placeholder="ملاحظات إضافية / Additional Notes"
                     ></textarea>
                   </div>
+                  <div class="col-12">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="terms-accept" name="termsAccepted" value="1" />
+                      <label class="form-check-label" for="terms-accept">
+                        <span id="terms-label-ar">أوافق علي الشروط و سياسة الخدمة</span>
+                        <span id="terms-label-en" class="d-none">I agree to the Terms & Service Policy</span>
+                        <a href="#" class="ms-2" data-bs-toggle="modal" data-bs-target="#termsModal" id="terms-link-ar">الاطلاع علي الشروط و سياسة الخدمة</a>
+                        <a href="#" class="ms-2 d-none" data-bs-toggle="modal" data-bs-target="#termsModal" id="terms-link-en">View Terms & Service Policy</a>
+                      </label>
+                    </div>
+                  </div>
                   <div class="col-12 text-center">
                     <button
                       type="submit"
@@ -1275,5 +1286,190 @@
     <!-- Bootstrap JavaScript with CDN fallback -->
     <script src="https://unpkg.com/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
             onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js'"></script>
+
+    <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="termsModalLabel">
+              <span id="terms-modal-title-ar">الشروط والأحكام</span>
+              <span id="terms-modal-title-en" class="d-none">Terms & Conditions</span>
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div id="terms-modal-body-ar" dir="rtl" lang="ar">
+              <h6 class="fw-bold mb-3">للعيادة الرقمية وخدمة الزيارة المنزلية</h6>
+              <div class="mb-3">
+                <div class="fw-bold">1. طبيعة الخدمة</div>
+                <div>تقدّم العيادة خدمات رعاية صحية عن بُعد (استشارات رقمية) وخدمة زيارة منزلية (Home Visit) وفق المعايير المهنية المعتمدة.</div>
+                <div>الاستشارة الرقمية لا تُغني عن الفحص السريري المباشر عند الحاجة، ويعود القرار النهائي للطبيب المعالج.</div>
+              </div>
+              <div class="mb-3">
+                <div class="fw-bold">2. حدود المسؤولية الطبية</div>
+                <div>يعتمد التقييم الطبي على المعلومات التي يقدّمها المريض.</div>
+                <div>أي معلومات غير دقيقة أو ناقصة تُحمّل المريض كامل المسؤولية.</div>
+                <div>العيادة غير مسؤولة عن أي مضاعفات ناتجة عن:</div>
+                <div>- عدم الالتزام بالتعليمات الطبية.</div>
+                <div>- استخدام الأدوية دون إشراف.</div>
+                <div>- تجاهل التوصية بمراجعة منشأة صحية حضورية.</div>
+              </div>
+              <div class="mb-3">
+                <div class="fw-bold">3. الحالات الطارئة</div>
+                <div>العيادة لا تقدّم خدمات طوارئ.</div>
+                <div>في حال ظهور أعراض خطيرة (ألم صدري، ضيق تنفس، نزيف، فقدان وعي، تشنجات)، يلتزم المريض بالتوجّه فوراً لأقرب مستشفى.</div>
+                <div>استخدام المنصة في الحالات الطارئة يُعد مخالفة للشروط.</div>
+              </div>
+              <div class="mb-3">
+                <div class="fw-bold">4. الأدوية والوصفات</div>
+                <div>صرف الأدوية يتم حسب التقييم الطبي فقط.</div>
+                <div>بعض الأدوية عالية الخطورة أو الخاضعة للرقابة لا تُصرف عبر الاستشارات الرقمية.</div>
+                <div>الوصفة الطبية الإلكترونية محدودة الصلاحية وفق ما يحدده الطبيب.</div>
+              </div>
+              <div class="mb-3">
+                <div class="fw-bold">5. الخصوصية والسرية</div>
+                <div>تُحفظ بيانات المرضى بسرية تامة ولا تُستخدم إلا لغرض العلاج والمتابعة.</div>
+                <div>لا يتم الإفصاح عن البيانات إلا بموافقة المريض أو بطلب رسمي من جهة قانونية مختصة.</div>
+              </div>
+              <div class="mb-3">
+                <div class="fw-bold">6. السلوك والتواصل</div>
+                <div>يُمنع منعاً باتاً:</div>
+                <div>- الإساءة اللفظية أو السلوكية.</div>
+                <div>- التهديد أو التحرش بالكادر.</div>
+                <div>- تسجيل أو تصوير الاستشارة دون إذن خطي. للعيادة الحق في إيقاف الخدمة فوراً عند أي تجاوز.</div>
+              </div>
+              <div class="mb-3">
+                <div class="fw-bold">7. الدقة والهوية</div>
+                <div>المريض مسؤول عن تقديم بيانات صحيحة ودقيقة.</div>
+                <div>انتحال الشخصية أو استخدام حساب شخص آخر يؤدي إلى إلغاء الخدمة دون أي التزام على العيادة.</div>
+              </div>
+              <div class="mb-3">
+                <div class="fw-bold">8. الالتزام والمتابعة</div>
+                <div>عدم الالتزام بالمتابعة أو تجاهل التعليمات الطبية يُسقط أي مسؤولية عن العيادة.</div>
+                <div>المتابعة مسؤولية مشتركة بين المريض والطبيب.</div>
+              </div>
+              <div class="mb-3">
+                <div class="fw-bold">9. الرسوم</div>
+                <div>الرسوم غير قابلة للاسترداد بعد بدء الاستشارة أو تنفيذ الزيارة.</div>
+                <div>عدم حضور المريض أو تأخره لا يلزم العيادة بإعادة الحجز.</div>
+              </div>
+              <div class="mb-3">
+                <div class="fw-bold">10. خدمة الزيارة المنزلية (Home Visit)</div>
+                <div>تُقدَّم الزيارة المنزلية ضمن نطاق جغرافي محدد ولأغراض طبية فقط.</div>
+                <div class="fw-bold mt-2">سلامة الكادر:</div>
+                <div>يلتزم المريض أو ذويه بتوفير بيئة آمنة داخل المنزل.</div>
+                <div>يمنع وجود أي تهديد جسدي أو لفظي أو سلوك غير لائق.</div>
+                <div class="fw-bold mt-2">حق الإلغاء:</div>
+                <div>يحق للكادر الطبي إلغاء الزيارة أو مغادرة الموقع فوراً دون تقديم الخدمة في حال:</div>
+                <div>- وجود إساءة، تهديد، عنف، أو بيئة غير آمنة.</div>
+                <div>- وجود أسلحة، مواد مخدرة، أو أي نشاط غير قانوني. وتُعد الزيارة في هذه الحالة منفذة وغير مستردة الرسوم.</div>
+                <div class="fw-bold mt-2">المسؤولية:</div>
+                <div>المريض مسؤول بالكامل عن سلامة موقع الزيارة، والعيادة غير مسؤولة عن أي أذى ناتج عن بيئة غير آمنة.</div>
+              </div>
+              <div class="mb-3">
+                <div class="fw-bold">11. المساءلة القانونية</div>
+                <div>أي مخالفة لهذه الشروط والأحكام، بما في ذلك إساءة استخدام الخدمة أو الاعتداء على الكادر أو انتهاك الخصوصية، قد تعرّض المريض للمساءلة القانونية وفق القوانين المعمول بها.</div>
+                <div>تحتفظ العيادة بحقها الكامل في اتخاذ الإجراءات القانونية اللازمة لحماية حقوقها وحقوق الكادر الطبي.</div>
+              </div>
+              <div class="mb-3">
+                <div class="fw-bold">12. الإقرار والموافقة</div>
+                <div>بالموافقة على هذه الشروط، يقرّ المريض بأنه:</div>
+                <div>- اطّلع وفهم طبيعة الخدمات وحدودها.</div>
+                <div>- يلتزم بتوفير بيئة آمنة في الزيارة المنزلية.</div>
+                <div>- يتحمل المسؤولية القانونية المترتبة على أي مخالفة للشروط.</div>
+              </div>
+            </div>
+
+            <div id="terms-modal-body-en" class="d-none" dir="ltr" lang="en">
+              <h6 class="fw-bold mb-3">For the Digital Clinic & Home Visit Service</h6>
+              <div class="mb-3">
+                <div class="fw-bold">1. Nature of the service</div>
+                <div>The clinic provides remote healthcare services (digital consultations) and Home Visit services according to recognized professional standards.</div>
+                <div>Digital consultation does not replace in-person clinical examination when needed; the treating physician has the final decision.</div>
+              </div>
+              <div class="mb-3">
+                <div class="fw-bold">2. Medical liability limits</div>
+                <div>Medical assessment depends on the information provided by the patient.</div>
+                <div>Any inaccurate or incomplete information is the patient’s responsibility.</div>
+                <div>The clinic is not responsible for complications resulting from:</div>
+                <div>- Not following medical instructions.</div>
+                <div>- Using medications without supervision.</div>
+                <div>- Ignoring advice to visit an in-person healthcare facility.</div>
+              </div>
+              <div class="mb-3">
+                <div class="fw-bold">3. Emergency cases</div>
+                <div>The clinic does not provide emergency services.</div>
+                <div>If severe symptoms occur (chest pain, shortness of breath, bleeding, loss of consciousness, seizures), the patient must go immediately to the nearest hospital.</div>
+                <div>Using the platform for emergencies violates these terms.</div>
+              </div>
+              <div class="mb-3">
+                <div class="fw-bold">4. Medications and prescriptions</div>
+                <div>Medication is prescribed only based on medical evaluation.</div>
+                <div>Certain high-risk or controlled medications may not be prescribed via digital consultation.</div>
+                <div>Electronic prescriptions are valid for a limited period as determined by the physician.</div>
+              </div>
+              <div class="mb-3">
+                <div class="fw-bold">5. Privacy and confidentiality</div>
+                <div>Patient data is kept strictly confidential and used only for treatment and follow-up.</div>
+                <div>Data is not disclosed except with patient consent or by official request from competent legal authorities.</div>
+              </div>
+              <div class="mb-3">
+                <div class="fw-bold">6. Conduct and communication</div>
+                <div>Strictly prohibited:</div>
+                <div>- Verbal or behavioral abuse.</div>
+                <div>- Threats or harassment of staff.</div>
+                <div>- Recording or filming the consultation without written permission. The clinic may stop the service immediately in case of violations.</div>
+              </div>
+              <div class="mb-3">
+                <div class="fw-bold">7. Accuracy and identity</div>
+                <div>The patient is responsible for providing correct and accurate information.</div>
+                <div>Impersonation or using someone else’s account results in cancellation of service without obligation on the clinic.</div>
+              </div>
+              <div class="mb-3">
+                <div class="fw-bold">8. Compliance and follow-up</div>
+                <div>Failure to follow up or ignoring instructions removes any liability from the clinic.</div>
+                <div>Follow-up is a shared responsibility between patient and physician.</div>
+              </div>
+              <div class="mb-3">
+                <div class="fw-bold">9. Fees</div>
+                <div>Fees are non-refundable after the consultation starts or the visit is carried out.</div>
+                <div>Patient absence or delay does not obligate the clinic to reschedule or refund.</div>
+              </div>
+              <div class="mb-3">
+                <div class="fw-bold">10. Home Visit service</div>
+                <div>Home visits are provided within a specific geographic range and for medical purposes only.</div>
+                <div class="fw-bold mt-2">Staff safety:</div>
+                <div>The patient/family must provide a safe environment inside the home.</div>
+                <div>No physical or verbal threats or inappropriate behavior are allowed.</div>
+                <div class="fw-bold mt-2">Right to cancel:</div>
+                <div>Medical staff may cancel the visit or leave immediately without providing service if:</div>
+                <div>- There is abuse, threats, violence, or an unsafe environment.</div>
+                <div>- There are weapons, drugs, or any illegal activity. In this case, the visit is considered delivered and non-refundable.</div>
+                <div class="fw-bold mt-2">Responsibility:</div>
+                <div>The patient is fully responsible for the safety of the visit location, and the clinic is not responsible for harm caused by an unsafe environment.</div>
+              </div>
+              <div class="mb-3">
+                <div class="fw-bold">11. Legal accountability</div>
+                <div>Any violation of these terms, including misuse of the service, assaulting staff, or privacy violations, may expose the patient to legal accountability under applicable laws.</div>
+                <div>The clinic reserves the full right to take legal action to protect its rights and staff rights.</div>
+              </div>
+              <div class="mb-3">
+                <div class="fw-bold">12. Acknowledgement and consent</div>
+                <div>By accepting these terms, the patient acknowledges that they:</div>
+                <div>- Have read and understood the nature and limits of the services.</div>
+                <div>- Will provide a safe environment for home visits.</div>
+                <div>- Accept legal responsibility for any violation of the terms.</div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              <span id="terms-modal-close-ar">إغلاق</span>
+              <span id="terms-modal-close-en" class="d-none">Close</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

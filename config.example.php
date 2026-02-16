@@ -15,5 +15,5 @@ define('RECIPIENT_EMAILS', [
 // Company Details
 define('COMPANY_NAME', 'Pash Medical Solutions');
 define('COMPANY_EMAIL', 'pashmedicalsolutions@gmail.com');
-define('COMPANY_WEBSITE', 'https://pashmedinnov.com');
+define('COMPANY_WEBSITE', 'https://pashcare.pashmedinnov.com');
 ?>
