@@ -1,0 +1,15 @@
+# Secrets
+config.php
+
+# Dependencies
+/node_modules/
+/vendor/
+
+# Logs
+*.log
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

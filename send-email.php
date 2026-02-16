@@ -146,7 +146,7 @@ function prepare_company_email_reservation($fullName, $email, $phone, $date, $se
 <head>
     <meta charset='UTF-8'>
     <style>
-        body { font-family: 'Open Sans', Arial, sans-serif; color: #2d3748; line-height: 1.6; }
+        body { font-family: 'Cairo','Inter',Arial,sans-serif; color: #2d3748; line-height: 1.6; }
         .container { max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; border-radius: 10px; }
         .header { background: linear-gradient(135deg, #1b5e20 0%, #388e3c 100%); color: white; padding: 20px; border-radius: 5px; text-align: center; margin-bottom: 20px; }
         .content { background-color: white; padding: 20px; border-radius: 5px; margin-bottom: 20px; }
@@ -191,7 +191,7 @@ function prepare_company_email_interest($fullName, $email, $interest_label, $mes
 <head>
     <meta charset='UTF-8'>
     <style>
-        body { font-family: 'Open Sans', Arial, sans-serif; color: #2d3748; line-height: 1.6; }
+        body { font-family: 'Cairo','Inter',Arial,sans-serif; color: #2d3748; line-height: 1.6; }
         .container { max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; border-radius: 10px; }
         .header { background: linear-gradient(135deg, #1b5e20 0%, #388e3c 100%); color: white; padding: 20px; border-radius: 5px; text-align: center; margin-bottom: 20px; }
         .content { background-color: white; padding: 20px; border-radius: 5px; margin-bottom: 20px; }
@@ -229,7 +229,7 @@ function prepare_user_email($fullName) {
 <head>
     <meta charset='UTF-8'>
     <style>
-        body { font-family: 'Open Sans', Arial, sans-serif; color: #2d3748; line-height: 1.6; }
+        body { font-family: 'Cairo','Inter',Arial,sans-serif; color: #2d3748; line-height: 1.6; }
         .container { max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; border-radius: 10px; }
         .header { background: linear-gradient(135deg, #1b5e20 0%, #388e3c 100%); color: white; padding: 20px; border-radius: 5px; text-align: center; margin-bottom: 20px; }
         .content { background-color: white; padding: 20px; border-radius: 5px; margin-bottom: 20px; }

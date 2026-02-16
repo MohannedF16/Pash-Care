@@ -17,7 +17,7 @@ A modern, bilingual (Arabic/English) healthcare platform that connects patients 
 - **Progressive Enhancement**: Works without JavaScript, enhanced with it
 - **Form Validation**: Client-side and server-side validation
 - **Email Notifications**: Automated email system for bookings and inquiries
-- **Interactive Map**: SVG map showing service coverage across Sudan states
+- **Hero Background**: Sudan map background image in the hero section
 
 ## 🏗️ Technology Stack
 
@@ -34,9 +34,9 @@ A modern, bilingual (Arabic/English) healthcare platform that connects patients 
 - **Composer**: Dependency management
 
 ### Design & Assets
-- **Open Sans**: Primary font family
+- **Cairo (Arabic)** and **Inter (English)**: Font families
 - **Custom CSS Grid**: Advanced layouts for doctor cards
-- **SVG Graphics**: Hero illustration and interactive maps
+- **SVG Graphics**: Hero illustration
 - **Optimized Images**: Web-ready medical imagery
 
 ## 📁 Project Structure
@@ -51,10 +51,11 @@ PashCare/
 ├── images/                 # Medical imagery and assets
 │   ├── image1.jpeg - image7.jpeg
 │   ├── hero-illustration.svg
+│   ├── sudan-map.jpeg
 │   ├── neurology.jpg
 │   └── logo.jpg
 ├── vendor/                 # PHP dependencies (Composer)
-├── config.php              # Email configuration
+├── config.php              # Email configuration (local-only, ignored by Git)
 ├── send-email.php          # Email processing script
 ├── config.example.php      # Configuration template
 ├── README.md               # This file
@@ -72,7 +73,7 @@ PashCare/
 
 ### 1. Clone/Download the Project
 ```bash
-git clone [repository-url]
+git clone https://github.com/MohannedF16/Pash-Care.git
 cd PashCare
 ```
 
@@ -86,6 +87,10 @@ composer install
 ```bash
 cp config.example.php config.php
 ```
+
+Note: `config.php` contains secrets and is intentionally ignored by Git via `.gitignore`.
+
+If `config.php` was ever committed to Git history, rotate the Gmail App Password immediately.
 
 2. Edit `config.php` with your settings:
 ```php
@@ -146,7 +151,8 @@ define('COMPANY_WEBSITE', 'https://yourwebsite.com');
 - **Background Light**: `#f9f9f9`
 
 ### Typography
-- **Primary Font**: Open Sans
+- **Arabic**: Cairo
+- **English**: Inter
 - **Headings**: 800 weight, gradient text effects
 - **Body Text**: 400-500 weight, optimal line height
 - **Arabic Support**: RTL layout with proper font rendering
@@ -196,6 +202,12 @@ define('COMPANY_WEBSITE', 'https://yourwebsite.com');
 - **Structured Data**: Medical organization schema
 - **Sitemap**: XML sitemap for search engines
 - **Robots.txt**: Search engine instructions
+
+### SEO Checklist (quick)
+- Ensure `https://pashmedinnov.com/sitemap.xml` is reachable
+- Ensure `robots.txt` is reachable and references the sitemap
+- Validate Structured Data in Google Rich Results Test
+- Use a share image that is publicly accessible (`og:image`, `twitter:image`)
 
 ### Performance Optimization
 - **Lazy Loading**: Images loaded as needed
@@ -259,8 +271,7 @@ define('CACHE_ENABLED', true);
 
 #### Mobile Menu Not Working
 1. Check Bootstrap JavaScript loading
-2. Verify jQuery dependency
-3. Check for JavaScript conflicts
+2. Check for JavaScript conflicts
 
 #### Images Not Loading
 1. Verify file paths

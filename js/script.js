@@ -1,5 +1,5 @@
 // Pash Care bilingual language toggle and enhancements
-// This script enables switching between Arabic and English content, RTL/LTR, and can be extended for map and form logic.
+// This script enables switching between Arabic and English content, RTL/LTR, hero word rotation, and form UX.
 window.addEventListener('DOMContentLoaded', function() {
   // Remove inline styles to prevent conflicts
   const inlineStyle = document.querySelector('style[data-inline-lang]');
@@ -29,37 +29,25 @@ window.addEventListener('DOMContentLoaded', function() {
     if(footerAr) footerAr.classList.toggle('d-none', !isAr);
     if(footerEn) footerEn.classList.toggle('d-none', isAr);
 
-    // update single toggle button label + accessibility
+    // update language toggle button text
+    const buttonText = isAr ? 'English' : 'العربية';
+    const buttonTitle = isAr ? 'View site in English' : 'عرض الموقع بالعربية';
+    
     if (langToggle) {
-      // button shows the language *to switch to* (better UX)
-      if (isAr) {
-        langToggle.textContent = 'English';
-        langToggle.setAttribute('title', 'Show site in English');
-        langToggle.setAttribute('aria-label', 'Switch to English');
-        langToggle.classList.remove('btn-outline-secondary');
-        langToggle.classList.add('btn-outline-primary');
-      } else {
-        langToggle.textContent = 'العربية';
-        langToggle.setAttribute('title', 'عرض الموقع بالعربية');
-        langToggle.setAttribute('aria-label', 'التبديل إلى العربية');
-        langToggle.classList.remove('btn-outline-primary');
-        langToggle.classList.add('btn-outline-secondary');
-      }
+      langToggle.textContent = buttonText;
+      langToggle.setAttribute('title', buttonTitle);
     }
   }
 
-  // Animated language switch with debug logs (helps if clicks are being swallowed)
+  // Animated language switch
   function animatedSwitch(lang) {
     try {
-      console.log('[i] language switch requested ->', lang);
       const main = document.querySelector('main') || document.body;
       main.classList.add('lang-fade');
       // mark targets so CSS can fade them
       document.querySelectorAll('[id$="-ar"],[id$="-en"]').forEach(el => el.classList.add('lang-fade-target'));
       setTimeout(() => {
         setLanguage(lang);
-        // restart hero typing after language change
-        startHeroTyping();
         main.classList.remove('lang-fade');
         document.body.classList.add('lang-fade-done');
         // small delay to allow CSS to settle then remove helper class
@@ -71,106 +59,104 @@ window.addEventListener('DOMContentLoaded', function() {
     } catch (err) { console.error('language switch error', err); }
   }
 
+  // Language toggle event listener
   if (langToggle) {
     langToggle.addEventListener('click', function(e) {
       e.preventDefault();
       const current = html.getAttribute('lang') || 'ar';
       const next = (current === 'ar') ? 'en' : 'ar';
-      console.log('lang-toggle clicked ->', next);
       animatedSwitch(next);
     });
-    langToggle.addEventListener('keydown', function(ev){ if(ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); const current = html.getAttribute('lang') || 'ar'; animatedSwitch(current === 'ar' ? 'en' : 'ar'); }});
-  }
-
-  /* Typing animation utilities for hero text */
-  let _typingHandles = [];
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  function clearTypingTimers(){
-    _typingHandles.forEach(h => clearTimeout(h));
-    _typingHandles = [];
-  }
-
-  function typeText(el, text, speed = 40){
-    return new Promise((resolve) => {
-      if (!el) return resolve();
-      if (prefersReducedMotion) { el.textContent = text; return resolve(); }
-      el.textContent = '';
-      el.classList.add('typing','typing-cursor');
-      let i = 0;
-      function step(){
-        if (i <= text.length - 1) {
-          el.textContent += text.charAt(i);
-          i += 1;
-          _typingHandles.push(setTimeout(step, speed + (Math.random()*10)));
-        } else {
-          // keep cursor visible for a short moment, then resolve
-          _typingHandles.push(setTimeout(() => { el.classList.remove('typing-cursor'); resolve(); }, 400));
-        }
+    
+    langToggle.addEventListener('keydown', function(ev){ 
+      if(ev.key === 'Enter' || ev.key === ' ') { 
+        ev.preventDefault(); 
+        const current = html.getAttribute('lang') || 'ar'; 
+        animatedSwitch(current === 'ar' ? 'en' : 'ar'); 
       }
-      step();
     });
   }
 
-  async function startHeroTyping(){
-    clearTypingTimers();
-    const titleAr = document.getElementById('hero-title-ar');
-    const titleEn = document.getElementById('hero-title-en');
-    const descAr = document.getElementById('hero-desc-ar');
-    const descEn = document.getElementById('hero-desc-en');
+  /* Word rotation animation for hero section */
+  let _wordRotationTimer;
+  const serviceWords = {
+    ar: ['استشارة طبية', 'تمريض منزلي', 'خدمات رعاية صحية'],
+    en: ['Medical Consultation', 'Home Nursing', 'Healthcare Services']
+  };
 
+  function startWordRotation() {
+    clearWordRotationTimer();
     const isAr = document.documentElement.getAttribute('lang') === 'ar';
-
-    // determine visible elements
-    const titleEl = (isAr && titleAr) ? titleAr : titleEn;
-    const descEl = (isAr && descAr) ? descAr : descEn;
-
-    if (!titleEl || !descEl) return;
-
-    // store originals if not already stored
-    if (!titleEl.dataset.original) titleEl.dataset.original = titleEl.textContent.trim();
-    if (!descEl.dataset.original) descEl.dataset.original = descEl.textContent.trim();
-
-    const titleText = titleEl.dataset.original;
-    const descText = descEl.dataset.original;
-
-    // if reduced motion preference, render instantly
-    if (prefersReducedMotion) {
-      titleEl.textContent = titleText;
-      descEl.textContent = descText;
-      titleEl.classList.remove('typing-cursor');
-      descEl.classList.remove('typing-cursor');
-      return;
+    const words = serviceWords[isAr ? 'ar' : 'en'];
+    const animatedWordAr = document.getElementById('animated-word-ar');
+    const animatedWordEn = document.getElementById('animated-word-en');
+    
+    let currentIndex = 0;
+    
+    function rotateWord() {
+      const currentWord = words[currentIndex];
+      const targetElement = isAr ? animatedWordAr : animatedWordEn;
+      
+      if (targetElement) {
+        // Fade out
+        targetElement.classList.add('fade-out');
+        
+        setTimeout(() => {
+          // Change text
+          targetElement.textContent = currentWord;
+          // Remove fade-out and add fade-in
+          targetElement.classList.remove('fade-out');
+          targetElement.classList.add('fade-in');
+          
+          // Remove fade-in after animation completes
+          setTimeout(() => {
+            targetElement.classList.remove('fade-in');
+          }, 800);
+        }, 400);
+      }
+      
+      // Move to next word
+      currentIndex = (currentIndex + 1) % words.length;
     }
+    
+    // Start rotation immediately
+    rotateWord();
+    // Then rotate every 3 seconds
+    _wordRotationTimer = setInterval(rotateWord, 3000);
+  }
 
-    // clear visible text then animate sequentially
-    titleEl.textContent = '';
-    descEl.textContent = '';
-    try {
-      await typeText(titleEl, titleText, 35);
-      // small pause before description
-      await new Promise(r => _typingHandles.push(setTimeout(r, 300)));
-      await typeText(descEl, descText, 28);
-    } catch (e) {
-      // on error, restore texts
-      titleEl.textContent = titleText;
-      descEl.textContent = descText;
-      titleEl.classList.remove('typing-cursor');
-      descEl.classList.remove('typing-cursor');
+  function clearWordRotationTimer() {
+    if (_wordRotationTimer) {
+      clearInterval(_wordRotationTimer);
+      _wordRotationTimer = null;
     }
   }
 
   // Reveal on scroll for sections (progressive enhancement)
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(en => { if(en.isIntersecting) en.target.classList.add('visible'); });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('section, .service-card, .card').forEach(el => { el.classList.add('reveal'); io.observe(el); });
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(en => { if(en.isIntersecting) en.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('section, .service-card, .card').forEach(el => { el.classList.add('reveal'); io.observe(el); });
+  } else {
+    document.querySelectorAll('section, .service-card, .card').forEach(el => el.classList.add('reveal', 'visible'));
+  }
 
   // default language
   setLanguage('ar');
 
-  // start hero typing on initial load
-  startHeroTyping();
+  // start word rotation on initial load
+  startWordRotation();
+
+  // Update animatedSwitch to restart word rotation after language change
+  const originalAnimatedSwitch = animatedSwitch;
+  animatedSwitch = function(lang) {
+    originalAnimatedSwitch(lang);
+    // Restart word rotation with new language
+    setTimeout(() => {
+      startWordRotation();
+    }, 200);
+  };
 
   // --- AJAX form submission + friendly on-page feedback for reservation & interest forms ---
   function createAlertHTML(type, heading, text) {
@@ -314,276 +300,134 @@ window.addEventListener('DOMContentLoaded', function() {
   });
 
 
-  // --- Map interactivity: update state-info on hover/click (bilingual) ---
+  // --- Doctor Selection and Booking Functionality ---
   (function(){
-    const stateNameAr = document.getElementById('state-name-ar');
-    const stateNameEn = document.getElementById('state-name-en');
-    const stateStatusAr = document.getElementById('state-status-ar');
-    const stateStatusEn = document.getElementById('state-status-en');
-    const facilityCount = document.getElementById('facility-count');
-    const professionalCount = document.getElementById('professional-count');
-    const lastTraining = document.getElementById('last-training');
-    const upcomingEvents = document.getElementById('upcoming-events');
-    const statusBadge = document.querySelector('.status-badge');
-
-    // default (read from DOM so edits to HTML stay consistent)
-    const defaultInfo = {
-      arName: stateNameAr ? stateNameAr.textContent.trim() : 'اسم الولاية',
-      enName: stateNameEn ? stateNameEn.textContent.trim() : 'State Name',
-      coveredTextAr: stateStatusAr ? stateStatusAr.textContent.trim() : 'مغطاة',
-      coveredTextEn: stateStatusEn ? stateStatusEn.textContent.trim() : 'Covered',
-      facilities: facilityCount ? facilityCount.textContent.trim() : '-',
-      professionals: professionalCount ? professionalCount.textContent.trim() : '-',
-      lastTraining: lastTraining ? lastTraining.textContent.trim() : '-',
-      events: upcomingEvents ? upcomingEvents.textContent.trim() : '-',
-    };
-
-    // lightweight data for a few states (extendable)
-    const stateData = {
-      'SD-DC': { ar: 'وسط دارفور', en: 'Central Darfur', covered: true, facilities: 4, professionals: 68, lastTraining: 'Mar 2024', events: 1 },
-      'SD-DN': { ar: 'شمال دارفور', en: 'North Darfur', covered: true, facilities: 6, professionals: 120, lastTraining: 'Feb 2024', events: 3 },
-      'SD-DW': { ar: 'غرب دارفور', en: 'West Darfur', covered: true, facilities: 5, professionals: 90, lastTraining: 'Jan 2024', events: 2 },
-      'SD-KH': { ar: 'الخرطوم', en: 'Khartoum', covered: true, facilities: 45, professionals: 980, lastTraining: 'Dec 2023', events: 5 },
-      'SD-NO': { ar: 'الشمالية', en: 'Northern', covered: true, facilities: 20, professionals: 410, lastTraining: 'Sep 2023', events: 4 },
-      'SD-GD': { ar: 'القضارف', en: 'Al Qaḑārif', covered: true, facilities: 8, professionals: 150, lastTraining: 'Aug 2023', events: 2 },
-    };
-
-    function showState(el){
-      if (!el) return;
-      const id = el.id;
-      const data = stateData[id] || {};
-      const enName = data.en || el.getAttribute('title') || defaultInfo.enName;
-      const arName = data.ar || el.getAttribute('data-ar') || enName;
-      const covered = (typeof data.covered === 'boolean') ? data.covered : el.classList.contains('covered');
-
-      // update names
-      if (stateNameAr) stateNameAr.textContent = arName;
-      if (stateNameEn) stateNameEn.textContent = enName;
-
-      // update status badge text + style
-      if (stateStatusAr) stateStatusAr.textContent = covered ? 'مغطاة' : 'سيتم التغطية قريبًا';
-      if (stateStatusEn) stateStatusEn.textContent = covered ? 'Covered' : 'Will be covered soon';
-      if (statusBadge) statusBadge.classList.toggle('covered-badge', covered);
-
-      // if covered -> show stats; if not covered -> show 'coming soon' message and hide stats
-      const comingAr = document.getElementById('coming-soon-ar');
-      const comingEn = document.getElementById('coming-soon-en');
-      const details = document.getElementById('state-details');
-      if (covered) {
-        if (comingAr) comingAr.classList.add('d-none');
-        if (comingEn) comingEn.classList.add('d-none');
-        if (details) details.classList.remove('d-none');
-
-        // update stats (fallback to defaults)
-        facilityCount && (facilityCount.textContent = data.facilities ?? defaultInfo.facilities);
-        professionalCount && (professionalCount.textContent = data.professionals ?? defaultInfo.professionals);
-        lastTraining && (lastTraining.textContent = data.lastTraining ?? defaultInfo.lastTraining);
-        upcomingEvents && (upcomingEvents.textContent = data.events ?? defaultInfo.events);
-      } else {
-        // show coming-soon message (language toggle will control which one is visible)
-        if (comingAr) comingAr.classList.remove('d-none');
-        if (comingEn) comingEn.classList.remove('d-none');
-        if (details) details.classList.add('d-none');
-      }
+    const serviceSelect = document.getElementById('service-select');
+    const doctorContainer = document.getElementById('doctor-selection-container');
+    
+    // Show/hide doctor selection based on service type
+    if (serviceSelect) {
+      serviceSelect.addEventListener('change', function() {
+        const selectedService = this.value;
+        if (!doctorContainer) return;
+        if (selectedService === 'consultation') {
+          doctorContainer.style.display = 'block';
+          doctorContainer.style.animation = 'slideDown 0.3s ease-out';
+        } else {
+          doctorContainer.style.display = 'none';
+        }
+      });
     }
 
-    function resetState(){
-      if (stateNameAr) stateNameAr.textContent = defaultInfo.arName;
-      if (stateNameEn) stateNameEn.textContent = defaultInfo.enName;
-      if (stateStatusAr) stateStatusAr.textContent = defaultInfo.coveredTextAr;
-      if (stateStatusEn) stateStatusEn.textContent = defaultInfo.coveredTextEn;
-      facilityCount && (facilityCount.textContent = defaultInfo.facilities);
-      professionalCount && (professionalCount.textContent = defaultInfo.professionals);
-      lastTraining && (lastTraining.textContent = defaultInfo.lastTraining);
-      upcomingEvents && (upcomingEvents.textContent = defaultInfo.events);
-      if (statusBadge) statusBadge.classList.add('covered-badge');
-    }
-
-    // wire events to SVG states
-    const states = document.querySelectorAll('#sudan-map .state');
-    states.forEach(s => {
-      // make focusable for keyboard users
-      s.setAttribute('tabindex', '0');
-
-      s.addEventListener('mouseenter', () => showState(s));
-      s.addEventListener('focus', () => showState(s));
-      s.addEventListener('click', () => showState(s)); // mobile tap
-      s.addEventListener('mouseleave', () => resetState());
-      s.addEventListener('blur', () => resetState());
+    // Handle doctor booking buttons
+    const bookDoctorBtns = document.querySelectorAll('.book-doctor-btn');
+    const bookNursingBtn = document.querySelector('.book-nursing-btn');
+    const bookSpecialistBtn = document.querySelector('.specialist-btn');
+    
+    bookDoctorBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const doctorName = this.getAttribute('data-doctor');
+        const isAr = document.documentElement.getAttribute('lang') === 'ar';
+        
+        // Scroll to booking form
+        const bookingSection = document.getElementById('contact');
+        if (bookingSection) {
+          bookingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          
+          // Wait for scroll to complete, then fill form
+          setTimeout(() => {
+            // Set service to consultation
+            if (serviceSelect) {
+              serviceSelect.value = 'consultation';
+              serviceSelect.dispatchEvent(new Event('change'));
+            }
+            
+            // Select doctor
+            const doctorSelect = document.getElementById('doctor-select');
+            if (doctorSelect) {
+              doctorSelect.value = doctorName;
+            }
+            
+            // Show success message
+            const feedback = document.getElementById('reservation-feedback');
+            if (feedback) {
+              const message = isAr 
+                ? `تم اختيار ${doctorName}. يرجى إكمال بيانات الحجز.`
+                : `${doctorName} has been selected. Please complete booking details.`;
+              showFormMessage(feedback, 'success', isAr ? 'تم اختيار الطبيب' : 'Doctor Selected', message);
+            }
+          }, 800);
+        }
+      });
     });
 
-    // Navbar behavior: make hamburger functional and auto-collapse on small screens
-    (function(){
-      const navMenu = document.getElementById('navMenu');
-      const navLinks = document.querySelectorAll('.nav-link');
-      const toggler = document.querySelector('.navbar-toggler');
-
-      // Toggler: toggle Bootstrap collapse and update aria-expanded
-      if (toggler && navMenu) {
-        toggler.addEventListener('click', () => {
-          const bsCollapse = bootstrap.Collapse.getInstance(navMenu) || new bootstrap.Collapse(navMenu, {
-            toggle: false
-          });
-          bsCollapse.toggle();
-          
-          // Update aria-expanded
-          const isOpen = navMenu.classList.contains('show');
-          toggler.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        });
+    // Handle specialist booking button
+    if (bookSpecialistBtn) {
+      bookSpecialistBtn.addEventListener('click', function() {
+        const isAr = document.documentElement.getAttribute('lang') === 'ar';
+        const specialistName = isAr ? 'د. اعتدال ابراهيم' : 'Dr. E\'tedal Ibrahim';
         
-        toggler.addEventListener('keydown', (e) => { 
-          if (e.key === 'Enter' || e.key === ' ') { 
-            e.preventDefault(); 
-            toggler.click(); 
-          } 
-        });
-      }
-
-      // Collapse when a nav link is clicked (on narrow screens)
-      navLinks.forEach(link => link.addEventListener('click', () => {
-        try {
-          if (!navMenu) return;
-          if (window.innerWidth < 992 && navMenu.classList.contains('show')) {
-            const bsCollapse = bootstrap.Collapse.getInstance(navMenu) || new bootstrap.Collapse(navMenu, {
-              toggle: false
-            });
-            bsCollapse.hide();
-            if (toggler) toggler.setAttribute('aria-expanded', 'false');
-          }
-        } catch(e) { /* noop */ }
-      }));
-    })();
-
-    // --- Doctor Selection and Booking Functionality ---
-    (function(){
-      const serviceSelect = document.getElementById('service-select');
-      const doctorContainer = document.getElementById('doctor-selection-container');
-      
-      // Show/hide doctor selection based on service type
-      if (serviceSelect) {
-        serviceSelect.addEventListener('change', function() {
-          const selectedService = this.value;
-          if (selectedService === 'consultation' || selectedService === 'consultation') {
-            doctorContainer.style.display = 'block';
-            doctorContainer.style.animation = 'slideDown 0.3s ease-out';
-          } else {
-            doctorContainer.style.display = 'none';
-          }
-        });
-      }
-
-      // Handle doctor booking buttons
-      const bookDoctorBtns = document.querySelectorAll('.book-doctor-btn');
-      const bookNursingBtn = document.querySelector('.book-nursing-btn');
-      const bookSpecialistBtn = document.querySelector('.specialist-btn');
-      
-      bookDoctorBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-          const doctorName = this.getAttribute('data-doctor');
-          const isAr = document.documentElement.getAttribute('lang') === 'ar';
+        // Scroll to booking form
+        const bookingSection = document.getElementById('contact');
+        if (bookingSection) {
+          bookingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
           
-          // Scroll to booking form
-          const bookingSection = document.getElementById('contact');
-          if (bookingSection) {
-            bookingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Wait for scroll to complete, then fill form
+          setTimeout(() => {
+            // Set service to consultation
+            if (serviceSelect) {
+              serviceSelect.value = 'consultation';
+              serviceSelect.dispatchEvent(new Event('change'));
+            }
             
-            // Wait for scroll to complete, then fill form
-            setTimeout(() => {
-              // Set service to consultation
-              if (serviceSelect) {
-                serviceSelect.value = 'consultation';
-                serviceSelect.dispatchEvent(new Event('change'));
-              }
-              
-              // Select doctor
-              const doctorSelect = document.getElementById('doctor-select');
-              if (doctorSelect) {
-                doctorSelect.value = doctorName;
-              }
-              
-              // Show success message
-              const feedback = document.getElementById('reservation-feedback');
-              if (feedback) {
-                const message = isAr 
-                  ? `تم اختيار ${doctorName}. يرجى إكمال بيانات الحجز.`
-                  : `${doctorName} has been selected. Please complete booking details.`;
-                showFormMessage(feedback, 'success', isAr ? 'تم اختيار الطبيب' : 'Doctor Selected', message);
-              }
-            }, 800);
-          }
-        });
+            // Select specialist
+            const doctorSelect = document.getElementById('doctor-select');
+            if (doctorSelect) {
+              doctorSelect.value = specialistName;
+            }
+            
+            // Show success message
+            const feedback = document.getElementById('reservation-feedback');
+            if (feedback) {
+              const message = isAr 
+                ? `تم اختيار ${specialistName}. يرجى إكمال بيانات الحجز.`
+                : `${specialistName} has been selected. Please complete booking details.`;
+              showFormMessage(feedback, 'success', isAr ? 'تم اختيار الاستشاري' : 'Consultant Selected', message);
+            }
+          }, 800);
+        }
       });
+    }
 
-      // Handle specialist booking button
-      if (bookSpecialistBtn) {
-        bookSpecialistBtn.addEventListener('click', function() {
-          const isAr = document.documentElement.getAttribute('lang') === 'ar';
-          const specialistName = isAr ? 'د. اعتدال ابراهيم' : 'Dr. E\'tedal Ibrahim';
+    // Handle nursing service booking button
+    if (bookNursingBtn) {
+      bookNursingBtn.addEventListener('click', function() {
+        const isAr = document.documentElement.getAttribute('lang') === 'ar';
+        
+        // Scroll to booking form
+        const bookingSection = document.getElementById('contact');
+        if (bookingSection) {
+          bookingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
           
-          // Scroll to booking form
-          const bookingSection = document.getElementById('contact');
-          if (bookingSection) {
-            bookingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Wait for scroll to complete, then fill form
+          setTimeout(() => {
+            // Set service to nursing
+            if (serviceSelect) {
+              serviceSelect.value = 'nursing';
+              serviceSelect.dispatchEvent(new Event('change'));
+            }
             
-            // Wait for scroll to complete, then fill form
-            setTimeout(() => {
-              // Set service to consultation
-              if (serviceSelect) {
-                serviceSelect.value = 'consultation';
-                serviceSelect.dispatchEvent(new Event('change'));
-              }
-              
-              // Select specialist
-              const doctorSelect = document.getElementById('doctor-select');
-              if (doctorSelect) {
-                doctorSelect.value = specialistName;
-              }
-              
-              // Show success message
-              const feedback = document.getElementById('reservation-feedback');
-              if (feedback) {
-                const message = isAr 
-                  ? `تم اختيار ${specialistName}. يرجى إكمال بيانات الحجز.`
-                  : `${specialistName} has been selected. Please complete booking details.`;
-                showFormMessage(feedback, 'success', isAr ? 'تم اختيار الاستشاري' : 'Consultant Selected', message);
-              }
-            }, 800);
-          }
-        });
-      }
-
-      // Handle nursing service booking button
-      if (bookNursingBtn) {
-        bookNursingBtn.addEventListener('click', function() {
-          const isAr = document.documentElement.getAttribute('lang') === 'ar';
-          
-          // Scroll to booking form
-          const bookingSection = document.getElementById('contact');
-          if (bookingSection) {
-            bookingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            
-            // Wait for scroll to complete, then fill form
-            setTimeout(() => {
-              // Set service to nursing
-              if (serviceSelect) {
-                serviceSelect.value = 'nursing';
-                serviceSelect.dispatchEvent(new Event('change'));
-              }
-              
-              // Show success message
-              const feedback = document.getElementById('reservation-feedback');
-              if (feedback) {
-                const message = isAr 
-                  ? 'تم اختيار خدمة التمريض المنزلي. يرجى إكمال بيانات الحجز.'
-                  : 'Home nursing service has been selected. Please complete booking details.';
-                showFormMessage(feedback, 'success', isAr ? 'تم اختيار الخدمة' : 'Service Selected', message);
-              }
-            }, 800);
-          }
-        });
-      }
-    })();
-
+            // Show success message
+            const feedback = document.getElementById('reservation-feedback');
+            if (feedback) {
+              const message = isAr 
+                ? 'تم اختيار خدمة التمريض المنزلي. يرجى إكمال بيانات الحجز.'
+                : 'Home nursing service has been selected. Please complete booking details.';
+              showFormMessage(feedback, 'success', isAr ? 'تم اختيار الخدمة' : 'Service Selected', message);
+            }
+          }, 800);
+        }
+      });
+    }
   })();
-
 });

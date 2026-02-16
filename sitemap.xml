@@ -48,12 +48,4 @@
     <xhtml:link rel="alternate" hreflang="ar" href="https://pashmedinnov.com/#booking" />
     <xhtml:link rel="alternate" hreflang="en" href="https://pashmedinnov.com/#booking" />
   </url>
-  <url>
-    <loc>https://pashmedinnov.com/#coverage</loc>
-    <lastmod>2025-02-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://pashmedinnov.com/#coverage" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://pashmedinnov.com/#coverage" />
-  </url>
 </urlset>
