@@ -75,8 +75,8 @@ try {
     $company_mail->SMTPAuth = true;
     $company_mail->Username = GMAIL_EMAIL;
     $company_mail->Password = GMAIL_APP_PASSWORD;
-    $company_mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $company_mail->Port = 587;
+    $company_mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+    $company_mail->Port = 465;
 
     $company_mail->setFrom(GMAIL_EMAIL, 'Contact Form - ' . COMPANY_NAME);
     
@@ -94,6 +94,7 @@ try {
     $company_mail->AltBody = strip_tags($company_body);
 
     $company_mail->send();
+    error_log('PashCare mail: company notification sent. recipients=' . implode(',', RECIPIENT_EMAILS));
 
     // Send confirmation email to user
     $user_mail = new PHPMailer(true);
@@ -102,10 +103,11 @@ try {
     $user_mail->SMTPAuth = true;
     $user_mail->Username = GMAIL_EMAIL;
     $user_mail->Password = GMAIL_APP_PASSWORD;
-    $user_mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $user_mail->Port = 587;
+    $user_mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+    $user_mail->Port = 465;
 
-    $user_mail->setFrom(COMPANY_EMAIL, COMPANY_NAME);
+    $user_mail->setFrom(GMAIL_EMAIL, COMPANY_NAME);
+    $user_mail->addReplyTo(COMPANY_EMAIL, COMPANY_NAME);
     $user_mail->addAddress($email, $fullName);
 
     $user_mail->isHTML(true);
@@ -114,6 +116,7 @@ try {
     $user_mail->AltBody = strip_tags(prepare_user_email($fullName));
 
     $user_mail->send();
+    error_log('PashCare mail: user confirmation sent. to=' . $email);
 
     // Return success response
     http_response_code(200);
